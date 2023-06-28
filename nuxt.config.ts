@@ -5,15 +5,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-  ],
-  pinia: {
-    autoImports: [
-      // automatically imports `defineStore`
-      'defineStore', // import { defineStore } from 'pinia'
-      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
-    ],
-  },
-  // build
+    '@element-plus/nuxt'
+  ],// build
   build: {
     transpile: ['element-plus/es'],
   },
@@ -21,7 +14,13 @@ export default defineNuxtConfig({
 
   },
   vite: {
-    plugins: [ElementPlus(),],
+    plugins: [ElementPlus()],
   },
-
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
 })
