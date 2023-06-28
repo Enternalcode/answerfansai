@@ -757,10 +757,10 @@
   dependencies:
     "@lit-labs/ssr-dom-shim" "^1.0.0"
 
-"@lottiefiles/lottie-player@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.npmmirror.com/@lottiefiles/lottie-player/-/lottie-player-2.0.2.tgz#1c882b2c6b99c2a94e81773bb0fc0f163cefd674"
-  integrity sha512-R9WF2/gFboZ0GW3QjqtbZF94JQq8oI1t5XWZPtTypvk2xTizphybZu+c08QFQbqY6rnkazHIyRBj2MK0qr6Hrw==
+"@lottiefiles/lottie-player@^1.7.1":
+  version "1.7.1"
+  resolved "https://registry.npmmirror.com/@lottiefiles/lottie-player/-/lottie-player-1.7.1.tgz#d2827bbdd7b0235e7b967486019acea364e01bef"
+  integrity sha512-U2gokX7ZXHCD+DgRXfaFyxuVsc0SYfC2mXndnCVwGvpdApUGqvpZovihdB8p9fDKU2SBWLWBq38CuJTVz6k3Hg==
   dependencies:
     "@types/pako" "^1.0.1"
     lit "^2.1.2"
@@ -1057,7 +1057,7 @@
     vite-plugin-checker "^0.6.1"
     vue-bundle-renderer "^1.0.3"
 
-"@nuxtjs/tailwindcss@^6.8.0":
+"@nuxtjs/tailwindcss@^6.1.3":
   version "6.8.0"
   resolved "https://registry.npmmirror.com/@nuxtjs/tailwindcss/-/tailwindcss-6.8.0.tgz#14fd9862b1d41912f851624a18bc6d1b5611d504"
   integrity sha512-jzuvD1nfA2BPnSbHtKK0aiI51ndMa7lNGL1iDEFuEPsltzilZ9ED7zOP6niGTrImg0n5Yt4GEJpixi6yWwp9Hw==
@@ -1285,11 +1285,6 @@
   version "20.3.2"
   resolved "https://registry.npmmirror.com/@types/node/-/node-20.3.2.tgz#fa6a90f2600e052a03c18b8cb3fd83dd4e599898"
   integrity sha512-vOBLVQeCQfIcF/2Y7eKFTqrMnizK5lRNQ7ykML/5RuwVXVWxYkgwS7xbt4B6fKCUPgbSL5FSsjHQpaGQP/dQmw==
-
-"@types/node@^18":
-  version "18.16.18"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-18.16.18.tgz#85da09bafb66d4bc14f7c899185336d0c1736390"
-  integrity sha512-/aNaQZD0+iSBAGnvvN2Cx92HqE5sZCPZtx2TsK+4nvV23fFe09jVDvpArXr2j9DnYlzuU9WuoykDDc6wqvpNcw==
 
 "@types/pako@^1.0.1":
   version "1.0.4"
@@ -1892,7 +1887,7 @@ axios@^0.27.2:
     follow-redirects "^1.14.9"
     form-data "^4.0.0"
 
-axios@^1.4.0:
+axios@^1.2.2:
   version "1.4.0"
   resolved "https://registry.npmmirror.com/axios/-/axios-1.4.0.tgz#38a7bf1224cd308de271146038b551d725f0be1f"
   integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
@@ -5432,7 +5427,7 @@ nuxi@3.6.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxt@^3.6.0:
+nuxt@^3.0.0:
   version "3.6.1"
   resolved "https://registry.npmmirror.com/nuxt/-/nuxt-3.6.1.tgz#e2ab273cbda7a69177e03f228f355c3a6411c805"
   integrity sha512-IznN+nogCvDuI3IpjXSphdcGBTEeAdpG1iv01inXMWUAeViXhx6FpfPJ2BjQ1WBuahwcUkV2xmMhB3gsv3SLhw==
@@ -7236,11 +7231,6 @@ type-is@^1.6.16, type-is@~1.6.18:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.24"
-
-typescript@^5.0.4:
-  version "5.1.5"
-  resolved "https://registry.npmmirror.com/typescript/-/typescript-5.1.5.tgz#a3ae755082488b6046fe64345d293ef26af08671"
-  integrity sha512-FOH+WN/DQjUvN6WgW+c4Ml3yi0PH+a/8q+kNIfRehv1wLhWONedw85iu+vQ39Wp49IzTJEsZ2lyLXpBF7mkF1g==
 
 ufo@^1.1.1, ufo@^1.1.2:
   version "1.1.2"
