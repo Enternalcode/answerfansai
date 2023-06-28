@@ -22,8 +22,8 @@
                     </div>
                 </el-form>
                 <div class="my-4 text-gray-600 text-base text-left">
-                    如果已有账号，可以直接<span class="underline text-cus-active text-base cursor-pointer ml-1 font-bold"
-                        @click="signin">
+                    如果已有账号，可以直接<span class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
+                        @click="jumpToPage('/sign-in')">
                         <route-link to="/sign-in">登录</route-link>
                     </span>
                 </div>
@@ -40,7 +40,7 @@ import {
     ElInput,
     ElMessage
 } from "element-plus";
-import { setCookie } from "~/assets/js/utils/tools";
+import { jumpToPage, setCookie } from "~/assets/js/utils/tools";
 
 const loadingFlag = ref(false)
 const submitForm = reactive({ email: "", password: "", confirmPassword: "" })

@@ -19,7 +19,7 @@
                 </el-form>
                 <div class="my-4 text-gray-600 text-base text-center flex justify-between items-center">
                     <div>
-                        如果没有账号，请先<span class="underline text-cus-active text-base cursor-pointer ml-1 font-bold"
+                        如果没有账号，请先<span class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
                             @click="jumpToPage('/sign-up')">注册</span>
                     </div>
                     <div class="text-sm text-right text-gray-600 cursor-pointer transition-light hover:text-black"

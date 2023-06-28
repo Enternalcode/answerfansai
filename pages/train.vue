@@ -65,10 +65,6 @@ if (process.client) {
     userStore.initLocalUser()
 }
 
-definePageMeta({
-    middleware: 'auth'
-})
-
 //  State 
 interface QAInfo {
     id: number;

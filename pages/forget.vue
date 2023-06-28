@@ -16,7 +16,7 @@
                 </el-form>
                 <div class="my-4 text-gray-600 text-base text-center flex justify-between items-center">
                     <div>
-                        返回<span class="underline text-cus-active text-base cursor-pointer ml-1 font-bold"
+                        返回<span class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
                             @click="jumpToPage('/sign-in')">登录</span>
                     </div>
                 </div>
@@ -28,11 +28,11 @@
 <script setup lang="ts">
 import axios from 'axios';
 import {
-    ElButton,
-    ElForm,
-    ElFormItem,
-    ElInput,
-    ElMessage
+ElButton,
+ElForm,
+ElFormItem,
+ElInput,
+ElMessage
 } from "element-plus";
 import { jumpToPage } from "~/assets/js/utils/tools";
 
