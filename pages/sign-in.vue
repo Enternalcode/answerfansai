@@ -39,11 +39,15 @@ import {
     ElFormItem,
     ElInput,
     ElMessage,
+    ID_INJECTION_KEY
 } from "element-plus";
 import { jumpToPage, setCookie } from "~/assets/js/utils/tools";
 
 
-
+provide(ID_INJECTION_KEY, {
+    prefix: 100,
+    current: 0,
+})
 
 
 const loadingFlag = ref(false)

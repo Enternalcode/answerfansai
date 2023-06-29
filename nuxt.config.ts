@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    '@element-plus/nuxt'
   ],// build
   build: {
     transpile: ['element-plus/es'],

@@ -59,7 +59,7 @@
             <div class="mt-8 text-gray-600">让你的回复更有温度</div>
             <div class="mt-10 flex flex-col lg:flex-row justify-center lg:justify-start">
                 <a class="bg-cus-primary text-white px-4 py-3 rounded flex items-center justify-center w-48 m-auto lg:ml-0 lg:mr-0"
-                    href="/editor" target="_self">
+                    href="/sign-up" target="_self">
                     <span class="ml-1">
                         立即注册
                     </span>
