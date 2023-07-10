@@ -35,7 +35,7 @@ async function getPrivateDownloadUrl(body) {
   var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
   var config = new qiniu.conf.Config();
   var bucketManager = new qiniu.rs.BucketManager(mac, config);
-  var privateBucketDomain = 'http://s.oralfairy.com';
+  var privateBucketDomain = 'http://p.oralfairy.com';
   var deadline = parseInt(Date.now() / 1000) + 3600;
   var privateDownloadUrl = bucketManager.privateDownloadUrl(privateBucketDomain, body.key, deadline);
   return {

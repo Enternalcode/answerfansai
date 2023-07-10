@@ -58,7 +58,7 @@ function createChatWindow(config) {
 
 function run() {
   const robotId = document.currentScript.getAttribute('id');
-  const chatUrl = `http://answerfansai.com/robot-chat-room/${robotId}`;
+  const chatUrl = `https://answerfansai.com/robot-chat-room/${robotId}`;
   createChatWindow({
     chatUrl: chatUrl,
     // 其他配置参数...
