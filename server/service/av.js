@@ -2,6 +2,7 @@ import AV from 'leancloud-storage';
 import { AV_CONFIG } from '../config/vars';
 import jws from '../utils/jws';
 import { yungouSign } from '../utils/md5';
+import { getCurrentTimestamp } from '../utils/tool';
 
 AV.init({
     appId: AV_CONFIG.appId,
@@ -52,7 +53,7 @@ async function signupUser(body) {
         return exp.save().then(async () => {
             console.log(`注册成功。objectId：${user.id}`);
             const userSign = { userId: userObjectId }
-            const token = await jws.sign(userSign, new Date().getTime() / 1000)
+            const token = await jws.sign(userSign, getCurrentTimestamp() / 1000)
             let returnUser = {
                 userId: userObjectId,
                 email: email,
@@ -81,7 +82,7 @@ async function signinUser(body) {
         let userId = user.getObjectId()
 
         const userSign = { userId: userId }
-        const token = await jws.sign(userSign, new Date().getTime() / 1000)
+        const token = await jws.sign(userSign, getCurrentTimestamp() / 1000)
         let returnUser = {
             userId: user.getObjectId(),
             email: email,
@@ -194,7 +195,7 @@ async function synchronizationUserInfo(body, headers) {
         const result = await jws.verify(token)
         const payload = result.payload
         if (payload.userId) {
-            const date = new Date().getTime()
+            const date = getCurrentTimestamp()
             const expireTime = payload.expirationAt
             if (payload.expirationAt && (date < expireTime)) { // 会员判断过期时间，未过期则成功返回，过期则返回
                 const data = { "verify": userVerify.verified, expirationAt: payload.expirationAt, token }
@@ -211,7 +212,7 @@ async function synchronizationUserInfo(body, headers) {
         return { data: { err_code: define.NO_DATA, err: error } }
     } else {
         let data = {}
-        const date = new Date().getTime()
+        const date = getCurrentTimestamp()
         const expireTime = userAndExpiration.expirationAt
         if (userAndExpiration.expirationAt && (date < expireTime)) { // 如果有效期内，则设定有效期token
             // jws generate token
@@ -219,7 +220,7 @@ async function synchronizationUserInfo(body, headers) {
             const expirationAt = userAndExpiration.expirationAt
             const member = userAndExpiration.member
             const user = { userId, expirationAt, member }
-            const token = await jws.sign(user, new Date().getTime() / 1000)
+            const token = await jws.sign(user, getCurrentTimestamp() / 1000)
             data = { "verify": userVerify.verified, expirationAt, token }
         } else { // 非有效期
             data = { "verify": userVerify.noverified }

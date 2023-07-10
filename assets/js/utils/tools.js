@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { AesEncryption } from '../lib/cipher';
 
-
+export function isEmail(str) {
+    const reg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+    return reg.test(str);
+}
 
 export function jumpToPage(page, query = {}) {
     navigateTo(page, query = query);
@@ -10,6 +13,7 @@ export function jumpToPage(page, query = {}) {
 export function uuid(len) {
     return Number(Math.random().toString().substr(3, 8) + Date.now()).toString(len ? len : 36)
 }
+
 export function setCookie(name, value, days) {
     var expires = "";
     if (days) {

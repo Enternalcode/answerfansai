@@ -1,6 +1,7 @@
 import axios from "axios";
 import { SERVICE_CONFIG } from "../config/vars";
 import { generateBKHeader } from "../utils/request";
+import { getCurrentTimestamp } from "../utils/tool";
 
 function getServerURL(env = SERVICE_CONFIG.env) {
     if (env === "dev") {
@@ -28,7 +29,7 @@ async function answerQuestion(body) {
     let data = {
         "user_id": body.user_id,
         "robot_id": body.robot_id,
-        "request_timestamp_ms": body.request_timestamp_ms,
+        "request_timestamp_ms": getCurrentTimestamp(),
         "messages": body.messages,
         "max_tokens": body.max_tokens,
         "search_limit": body.search_limit,
@@ -65,10 +66,44 @@ async function createChatbot(body) {
     let path = '/v1/customer-service-robot/robot/create';
     let url = baseURL + path
     let data = {
-        "user_id": body.user_id,
-        "request_timestamp_ms": body.request_timestamp_ms,
-        "robot_name": body.robot_name,
-        "robot_type": body.robot_type,
+        "user_id": body.userId,
+        "request_timestamp_ms": getCurrentTimestamp(),
+        "robot_name": body.robotName,
+        "robot_avatar_key": body.robotAvatarKey,
+        "robot_desc": body.robotDesc,
+        "robot_category": body.robotCategory,
+    }
+    const headers = generateBKHeader(SERVICE_CONFIG.apiAppKey, SERVICE_CONFIG.apiAppSecret, data, path)
+    const response = await axios.post(url, data, { headers: headers });
+    return response.data;
+}
+
+async function deleteChatBot(body) {
+    let baseURL = getServerURL();
+    let path = '/v1/customer-service-robot/robot/delete';
+    let url = baseURL + path
+    let data = {
+        "user_id": body.userId,
+        "robot_id": body.robotId,
+        "request_timestamp_ms": getCurrentTimestamp(),
+    }
+    const headers = generateBKHeader(SERVICE_CONFIG.apiAppKey, SERVICE_CONFIG.apiAppSecret, data, path)
+    const response = await axios.post(url, data, { headers: headers });
+    return response.data;
+}
+
+async function updateChatBot(body) {
+    let baseURL = getServerURL();
+    let path = '/v1/customer-service-robot/robot/update';
+    let url = baseURL + path
+    let data = {
+        "user_id": body.userId,
+        "robot_id": body.robotId,
+        "request_timestamp_ms": getCurrentTimestamp(),
+        "robot_name": body.robotName,
+        "robot_avatar_key": body.robotAvatarKey,
+        "robot_desc": body.robotDesc,
+        "category": body.robotCategory,
     }
     const headers = generateBKHeader(SERVICE_CONFIG.apiAppKey, SERVICE_CONFIG.apiAppSecret, data, path)
     const response = await axios.post(url, data, { headers: headers });
@@ -82,8 +117,21 @@ async function getScopedKnowledge(body) {
     let data = {
         "user_id": body.user_id,
         "robot_id": body.robot_id,
-        "request_timestamp_ms": body.request_timestamp_ms,
+        "request_timestamp_ms": getCurrentTimestamp(),
         "limit": body.limit,
+    }
+    const headers = generateBKHeader(SERVICE_CONFIG.apiAppKey, SERVICE_CONFIG.apiAppSecret, data, path)
+    const response = await axios.post(url, data, { headers: headers });
+    return response.data;
+}
+
+async function getRobotInfoByRobotId(body) {
+    let baseURL = getServerURL();
+    let path = '/v1/customer-service-robot/robot/get-info';
+    let url = baseURL + path
+    let data = {
+        "robot_id": body.robot_id,
+        "request_timestamp_ms": getCurrentTimestamp(),
     }
     const headers = generateBKHeader(SERVICE_CONFIG.apiAppKey, SERVICE_CONFIG.apiAppSecret, data, path)
     const response = await axios.post(url, data, { headers: headers });
@@ -96,7 +144,7 @@ async function getAllRobotByUserId(body) {
     let url = baseURL + path
     let data = {
         "user_id": body.user_id,
-        "request_timestamp_ms": body.request_timestamp_ms,
+        "request_timestamp_ms": getCurrentTimestamp(),
     }
     const headers = generateBKHeader(SERVICE_CONFIG.apiAppKey, SERVICE_CONFIG.apiAppSecret, data, path)
     const response = await axios.post(url, data, { headers: headers });
@@ -109,7 +157,7 @@ async function deleteScopedKnowledge(body) {
     let url = baseURL + path
     let data = {
         "user_id": body.user_id,
-        "request_timestamp_ms": body.request_timestamp_ms,
+        "request_timestamp_ms": getCurrentTimestamp(),
         "robot_id": body.robot_id,
         "digest": body.digest,
     }
@@ -124,7 +172,7 @@ async function addScopedKnowledge(body) {
     let url = baseURL + path
     let data = {
         "user_id": body.user_id,
-        "request_timestamp_ms": body.request_timestamp_ms,
+        "request_timestamp_ms": getCurrentTimestamp(),
         "robot_id": body.robot_id,
         "scoped_knowledge": body.scoped_knowledge,
     }
@@ -133,5 +181,5 @@ async function addScopedKnowledge(body) {
     return response.data;
 }
 
-export { addScopedKnowledge, answerQuestion, chatbotAsk, createChatbot, deleteScopedKnowledge, getAllRobotByUserId, getScopedKnowledge, testPostConnect };
+export { addScopedKnowledge, answerQuestion, chatbotAsk, createChatbot, deleteChatBot, deleteScopedKnowledge, getAllRobotByUserId, getRobotInfoByRobotId, getScopedKnowledge, testPostConnect, updateChatBot };
 

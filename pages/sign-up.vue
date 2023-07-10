@@ -1,10 +1,52 @@
 <template>
     <client-only>
+        <Logo class="" />
+        <div class="max-w-lg m-auto">
+            <div class="relative flex flex-col justify-center h-screen overflow-hidden">
+                <div class="w-full p-1 m-auto rounded-md shadow-md lg:max-w-xl">
+                    <h1 class="text-3xl font-semibold text-center">AnswerFansAI</h1>
+                    <div class="text-2xl my-2 text-center">{{ $t('signUp') }}</div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="label">
+                                <span class="text-base label-text">{{ $t('email') }}</span>
+                            </label>
+                            <input v-model="submitForm.email" type="text" :placeholder="t('email')"
+                                class="w-full input input-bordered input-primary" />
+                        </div>
+                        <div>
+                            <label class="label">
+                                <span class="text-base label-text">{{ $t('password') }}</span>
+                            </label>
+                            <input v-model="submitForm.password" type="password" :placeholder="t('passwordLengthRequire')"
+                                class="w-full input input-bordered input-primary" />
+                        </div>
+                        <div>
+                            <label class="label">
+                                <span class="text-base label-text">{{ $t('confirmPassword') }}</span>
+                            </label>
+                            <input v-model="submitForm.confirmPassword" type="password"
+                                :placeholder="t('passwordLengthRequire')"
+                                class="w-full input input-bordered input-primary" />
+                        </div>
+                        <div>
+                            <button @click="signUpUser" class="btn btn-block btn-success">{{ $t('signUp') }}</button>
+                        </div>
+                        <div class="my-4 text-gray-600 text-base text-left">
+                            {{ $t('haveAccountHint') }}<span
+                                class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
+                                @click="jumpToPage('/sign-in')">
+                                <route-link to="/sign-in">{{ $t('signIn') }}</route-link>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="px-4">
-            <Logo class="" />
             <div class="max-w-lg m-auto">
                 <div class="text-2xl my-10">注册账号</div>
-                <el-form ref="formRef" :model="submitForm" :rules="rules" status-icon class="w-full">
+                <!-- <el-form ref="formRef" :model="submitForm" :rules="rules" status-icon class="w-full">
                     <el-form-item prop="email" class="w-full">
                         <el-input placeholder="邮箱" v-model="submitForm.email" style="height:44px;" />
                     </el-form-item>
@@ -20,7 +62,7 @@
                         <el-button @click="signupUser" type="primary" class="w-full text-2xl"
                             style="height:44px;font-size: 16px;transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);">注册</el-button>
                     </div>
-                </el-form>
+                </el-form> -->
                 <div class="my-4 text-gray-600 text-base text-left">
                     如果已有账号，可以直接<span class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
                         @click="jumpToPage('/sign-in')">
@@ -33,94 +75,40 @@
 </template>
 <script setup lang="ts">
 import axios from 'axios';
-import {
-    ElButton,
-    ElForm,
-    ElFormItem,
-    ElInput,
-    ElMessage
-} from "element-plus";
 import { jumpToPage, setCookie } from "~/assets/js/utils/tools";
+const { t } = useI18n();
 
-const loadingFlag = ref(false)
 const submitForm = reactive({ email: "", password: "", confirmPassword: "" })
 
-const validatePass2 = (rule: any, value: any, callback: any) => {
-    if (value === '') {
-        callback(new Error('请输入确认密码！'))
-    } else if (value !== submitForm.password) {
-        callback(new Error("两次密码不一致!"))
-    } else {
-        callback()
-    }
-}
-const rules = reactive({
-    email: [
-        {
-            required: true,
-            message: '请填写邮箱地址',
-            trigger: 'blur',
-        }, {
-            type: 'email',
-            message: '请输入正确的邮箱地址',
-            trigger: ['blur', 'change'],
-        },
-    ],
-    password: [
-        {
-            required: true,
-            min: 6,
-            max: 20,
-            message: '请输入至少6位的密码',
-            trigger: ['blur', 'change'],
-        },
-    ],
-    confirmPassword: [{ validator: validatePass2, trigger: 'blur' }],
-})
 
-const signupUser = () => {
+const signUpUser = () => {
     if (submitForm.email.trim() == '' || submitForm.password.trim() == '' || submitForm.password.trim() == '') {
         return false
     }
     if (submitForm.password != submitForm.confirmPassword) {
-        ElMessage({
-            message: '密码不一致！',
-            type: 'error',
-        })
+        useNuxtApp().$toast.error(t('passwordInconsistency'));
         return false
     }
     let data = {
         email: submitForm.email.trim(),
         password: submitForm.password.trim()
     }
-    loadingFlag.value = true
     axios.post(`/api/user/sign-up`, data).then(async (response) => {
         if (response && response.data) {
             let res = response.data
             if (res.code) {
-                ElMessage({
-                    message: res.message,
-                    type: 'error',
-                })
-                loadingFlag.value = false
+                useNuxtApp().$toast.error(res.message);
             } else if (res.userId) {
                 setCookie("__user", encodeURIComponent(JSON.stringify(res)), 365)
-
-                loadingFlag.value = false
-                ElMessage({
-                    message: '恭喜你，注册成功！',
-                    type: 'success',
-                })
+                useNuxtApp().$toast.success(t('success'));
                 setTimeout(() => {
-                    window.location.href = "/train"
+                    window.location.href = "/robot-management"
                 }, 2000)
             }
         }
     }).catch((err) => {
-        ElMessage({
-            message: err,
-            type: 'error',
-        })
+        useNuxtApp().$toast.error(err);
+
     })
 }
 

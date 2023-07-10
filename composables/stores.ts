@@ -1,5 +1,8 @@
 import { defineStore } from 'pinia';
 import { getCookie } from "~/assets/js/utils/tools";
+import { getPrivateDownloadUrl } from '~~/assets/js/utils/commonService';
+import { ResRobotItem, RobotItem } from '~~/types/robot';
+
 
 
 export const useMemberStore = defineStore('member', {
@@ -36,7 +39,7 @@ export const useUserStore = defineStore('user', {
         setUser(data: any) {
             this.user = data;
         },
-        async initLocalUser() {
+        initLocalUser() {
             const res = getCookie("__user")
             if (res) {
                 const userObject = JSON.parse(decodeURIComponent(res))
@@ -49,14 +52,55 @@ export const useUserStore = defineStore('user', {
 })
 
 
-// })
+export const useEmberChatbotStore = defineStore('emberChatbot', () => {
+    var chatWindow = ref(false);
+    var chatInitiated = ref(false);
 
-export const useRobotStore = defineStore('robot', {
-    state: () => ({
-        robotsInfo: [],
-        selectedRobotName: "",
-        selectedRobotId: "",
-    }),
-    actions: {
+    function $reset() {
+        chatWindow.value = false;
+        chatInitiated.value = false;
+    }
+
+    return {
+        chatWindow,
+        chatInitiated,
+        $reset
+    }
+})
+
+export const useRobotStore = defineStore('robot', () => {
+    var robotsInfo = ref<RobotItem[]>([])
+    var selectedRobotName = ""
+    var selectedRobotId = ""
+
+    async function setRobotsInfo(data: ResRobotItem[]) {
+        let newData: RobotItem[] = []
+        for (let i = 0; i < data.length; i++) {
+            let avatar = await getPrivateDownloadUrl(data[i].avatar_key)
+            let item: RobotItem = {
+                id: data[i].robot_id,
+                name: data[i].robot_name,
+                category: data[i].category,
+                avatarKey: data[i].avatar_key,
+                avatarUrl: avatar,
+                desc: data[i].robot_desc
+            }
+            newData.push(item)
+        }
+        robotsInfo.value = newData
+    }
+
+    function $reset() {
+        robotsInfo.value = []
+        selectedRobotName = ""
+        selectedRobotId = ""
+    }
+
+    return {
+        robotsInfo,
+        selectedRobotName,
+        selectedRobotId,
+        setRobotsInfo,
+        $reset
     }
 })

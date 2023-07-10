@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="w-10/12 my-5 mx-auto max-w-[90%]">
-            <el-divider content-position="left">
+            <!-- <el-divider content-position="left">
                 选择机器人
             </el-divider>
             <el-select v-model="selectedRobot.robotName" placeholder="Select" size="large">
@@ -27,16 +27,14 @@
                 回复
             </el-divider>
             <el-input :rows="10" clearable type="textarea" v-model="answer">
-            </el-input>
+            </el-input> -->
         </div>
         <Footer />
     </client-only>
 </template>
 
 <script setup lang="ts">
-import { Promotion } from '@element-plus/icons-vue';
 import axios from 'axios';
-import { ElButton, ElDivider, ElInput, ElMessage, ElOption, ElSelect } from 'element-plus';
 
 const route = useRoute();
 const { userId } = route.params;
@@ -109,7 +107,6 @@ const testPost = async () => {
 const getAllRobot = async () => {
     let data = {
         "user_id": userId,
-        "request_timestamp_ms": new Date().getTime(),
     }
     axios.post("/api/chatbot/get-all-robot", data).then(async (response) => {
         if (response.data.code != 20000) {

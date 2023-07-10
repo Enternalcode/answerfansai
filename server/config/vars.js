@@ -5,12 +5,8 @@ const AV_CONFIG = {
     serverURL: "https://lcserver.answerfansai.com"
 }
 
-const QINIU_CONFIG = {
-    accessKey: "xWIPGRtig-B1ARQpFDKp-PLkrPVhOmOOqJ6ZPeTD",
-    secretKey: "Xa8uTbc6oPp1V_gYfWM5IBiMUtZtHlYns1ulWCN_"
-}
-
 const SERVICE_CONFIG = {
+    // env: "dev",
     env: "prod", // dev, prod
     testServerURL: "http://106.53.97.149:9960",
     serverURL: "https://service-13p3cehs-1317931343.gz.apigw.tencentcs.com:443",
@@ -27,5 +23,4 @@ const YUNGOU = {
 }
 
 
-
-export { AV_CONFIG, QINIU_CONFIG, SERVICE_CONFIG, YUNGOU }
+export { AV_CONFIG, SERVICE_CONFIG, YUNGOU }

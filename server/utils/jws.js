@@ -8,7 +8,7 @@ const config = {
 // 用Promise封装jws签名接口
 module.exports.sign = async function (payload, exp) {
     const r = {
-        iat: new Date().getTime() / 1000,
+        iat: getCurrentTimestamp() / 1000,
         exp,
         payload
     }

@@ -13,7 +13,7 @@ async function wxPayQrcode(body) {
     const fee = body.fee
     const attach = body.attach
     // 签名的参数准备
-    const dateTime = new Date().getTime()
+    const dateTime = getCurrentTimestamp()
     let transParams = {
         "out_trade_no": "ddmt" + dateTime,
         "total_fee": fee,
