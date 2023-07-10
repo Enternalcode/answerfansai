@@ -51,7 +51,7 @@ onMounted(() => {
     const script = document.createElement('script')
     script.src = "http://rxl2d0p0w.hn-bkt.clouddn.com/emberRobot.min.js"
     script.id = '0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5'
-    script.domain = ""
+    script.domain = "answerfansai.com"
     document.body.appendChild(script)
 })
 </script>
