@@ -52,7 +52,7 @@ const uploadAvatar = async (files: Array<File>) => {
             },
             complete: (res: any) => {
                 startUpload.value = false
-                const url = 'http://p.oralfairy.com/' + res.key + "?imageslim";
+                const url = 'https://p.oralfairy.com/' + res.key + "?imageslim";
                 imageUrl.value = URL.createObjectURL(preparedUploadObject)
                 eventBus.emit('uploadAvatar', { avatarKey: res.key })
             },

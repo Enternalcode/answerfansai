@@ -1,3 +1,4 @@
+
 function createChatWindow(config) {
   // 创建按钮元素
   const btn = document.createElement('button')
@@ -56,6 +57,14 @@ function createChatWindow(config) {
   document.body.appendChild(iframe);
 }
 
+export function localDeploy(robotId) {
+  const chatUrl = `https://answerfansai.com/robot-chat-room/${robotId}`;
+  createChatWindow({
+    chatUrl: chatUrl,
+    // 其他配置参数...
+  });
+}
+
 function run() {
   const robotId = document.currentScript.getAttribute('id');
   const chatUrl = `https://answerfansai.com/robot-chat-room/${robotId}`;
@@ -64,5 +73,7 @@ function run() {
     // 其他配置参数...
   });
 }
-
 run();
+
+
+

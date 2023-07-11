@@ -46,11 +46,18 @@
     </div>
     <Footer></Footer>
 </template>
+
 <script setup lang="ts">
+import { localDeploy } from "~/assets/js/scripts/emberRobot.js";
 onMounted(() => {
-    const script = document.createElement('script')
-    script.src = "https://s.oralfairy.com/emberRobot.min.js"
-    script.id = '0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5'
-    document.body.appendChild(script)
+    const robotId = "0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5"
+    localDeploy(robotId)
 })
+
+// onMounted(() => {
+//     const script = document.createElement('script')
+//     script.src = "https://s.oralfairy.com/emberRobot.min.js"
+//     script.id = '0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5'
+//     document.body.appendChild(script)
+// })
 </script>
