@@ -86,23 +86,9 @@ const userStore = useUserStore();
 const robotStore = useRobotStore();
 const deployCodeModal = ref(false);
 
-const iframeScriptContent = `
-// v-loazy-load, data-src is used for "nuxt-lazy-load" library,
-// if you are not using this library, you can use "src" attribute instead
 
-<iframe src="https://answerfansai.com/robot-chat-room/${robotStore.selectedRobotId}" height="824" width="448"></iframe>
-`
-
-const nuxt3ScriptContent = `
-<script lang="ts" setup>
-    onMounted(() => {
-        const script = document.createElement('script')
-        script.src = "https://s.oralfairy.com/emberRobotV2.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2"
-        script.id = '${robotStore.selectedRobotId}'
-        document.body.appendChild(script)
-    })
-<script>
-`;
+const iframeScriptContent = ref('')
+const nuxt3ScriptContent = ref('');
 
 if (process.client) {
     userStore.initLocalUser()
@@ -110,11 +96,24 @@ if (process.client) {
 }
 
 const toggleDeployCodeModal = (visible: boolean, robotId: string = '') => {
+    console.log("🚀 ~ file: CreateRobotTab.vue:114 ~ toggleDeployCodeModal ~ visible:", visible)
     console.log("🚀 ~ file: CreateRobotTab.vue:115 ~ toggleDeployCodeModal ~ robotId:", robotId)
-    if (robotId) {
-        robotStore.selectedRobotId = robotId;
-    }
     deployCodeModal.value = visible;
+    nuxt3ScriptContent.value = `
+    <script lang="ts" setup>
+        onMounted(() => {
+            const script = document.createElement('script')
+            script.src = "https://s.oralfairy.com/emberRobotV2.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2"
+            script.id = '${robotId}'
+            document.body.appendChild(script)
+        })
+    <script>`;
+    iframeScriptContent.value = `
+    // v-loazy-load, data-src is used for "nuxt-lazy-load" library,
+    // if you are not using this library, you can use "src" attribute instead
+
+    <iframe src="https://answerfansai.com/robot-chat-room/${robotId}" height="824" width="448"></iframe>
+    `
 }
 
 const createRobot = async (robotInfoForm: { avatarKey: any; name: any; desc: any; }) => {
