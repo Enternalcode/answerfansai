@@ -50,7 +50,6 @@ const forgetUser = () => {
         email: submitForm.email
     }
     axios.post(`/api/user/forget`, data).then(async (response) => {
-        console.log("--", response)
         if (response && response.data && response.data.code) {
             useNuxtApp().$toast.error(response.data.message);
         } else if (response && response.data) {

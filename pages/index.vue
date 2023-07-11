@@ -10,7 +10,9 @@
                         {{ $t("mainDes") }}
                     </p>
                 </div>
-                <button class="btn my-4" onclick="jumpToPage('/robot-management')">{{ $t('freeTrial') }}</button>
+                <button class="btn my-4" @click="jumpToPage('/robot-management')">
+                    {{ $t('freeTrial') }}
+                </button>
             </div>
             <div class="w-full lg:w-1/2 lg:px-5">
                 <lottie-player loop autoplay class="max-w-screen-md m-auto" style="min-width:400px" src="/lottie/robot.json"
@@ -41,23 +43,14 @@
         <div class="w-full lg:w-1/2 lg:pl-10 text-center lg:text-left mb-6 lg:mb-0">
             <h2 class="text-4xl">{{ $t('experienceItNow') }}</h2>
             <div class="mt-8 text-gray-600">{{ $t('repliesMoreHeartfelt') }}</div>
-            <button class="btn my-4" onclick="jumpToPage('/sign-up')">{{ $t('registerNow') }}</button>
+            <button class="btn my-4" @click="jumpToPage('/sign-up')">{{ $t('registerNow') }}</button>
         </div>
     </div>
     <Footer></Footer>
 </template>
 
-<script setup lang="ts">
-import { localDeploy } from "~/assets/js/scripts/emberRobot.js";
-onMounted(() => {
-    const robotId = "0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5"
-    localDeploy(robotId)
-})
 
-// onMounted(() => {
-//     const script = document.createElement('script')
-//     script.src = "https://s.oralfairy.com/emberRobot.min.js"
-//     script.id = '0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5'
-//     document.body.appendChild(script)
-// })
+<script setup lang="ts">
+import { jumpToPage } from "~/assets/js/utils/tools";
+
 </script>

@@ -7,7 +7,7 @@ export function isEmail(str) {
 }
 
 export function jumpToPage(page, query = {}) {
-    navigateTo(page, query = query);
+    return navigateTo(page, query = query);
 }
 
 export function uuid(len) {

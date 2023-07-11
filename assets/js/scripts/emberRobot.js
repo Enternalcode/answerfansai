@@ -1,13 +1,14 @@
 
 function createChatWindow(config) {
+  console.log('received config: ', config)
   // 创建按钮元素
   const btn = document.createElement('button')
   btn.id = config.buttonId || 'answerfansai-chat-bubble-button'
   btn.style.zIndex = '99999'
   btn.textContent = config.buttonText || '';
   btn.style.position = 'fixed';
-  btn.style.bottom = config.buttonBottom || '40px';
-  btn.style.right = config.buttonRight || '20px';
+  btn.style.bottom = config.buttonBottom || '4px';
+  btn.style.right = config.buttonRight || '10px';
   btn.style.zIndex = config.buttonZIndex || '9999';
   btn.style.width = config.buttonWidth || '50px';
   btn.style.height = config.buttonHeight || '50px';
@@ -57,23 +58,25 @@ function createChatWindow(config) {
   document.body.appendChild(iframe);
 }
 
-export function localDeploy(robotId) {
+function run() {
+  const robotId = document.currentScript.getAttribute('id');
+  const params = new URLSearchParams(document.currentScript.getAttribute('src'));
+  const buttonBottom = params.get('buttonBottom');
+  const buttonRight = params.get('buttonRight');
+  const buttonBackgroundColor = params.get('buttonBackgroundColor');
+  const buttonIcon = params.get('buttonIcon');
   const chatUrl = `https://answerfansai.com/robot-chat-room/${robotId}`;
   createChatWindow({
     chatUrl: chatUrl,
+    buttonBottom: buttonBottom,
+    buttonRight: buttonRight,
+    buttonBackgroundColor: buttonBackgroundColor,
+    buttonIconUrl: buttonIcon,
     // 其他配置参数...
   });
 }
 
-function run() {
-  const robotId = document.currentScript.getAttribute('id');
-  const chatUrl = `https://answerfansai.com/robot-chat-room/${robotId}`;
-  createChatWindow({
-    chatUrl: chatUrl,
-    // 其他配置参数...
-  });
-}
-// run();
+run();
 
 
 

@@ -53,7 +53,14 @@
                     </div>
                     <div class="divider"></div>
                     <div>
-                        <h3 class="py-2 text-white">Nuxt 3</h3>
+                        <h3 class="py-2 ">iframe</h3>
+                        <div class="mockup-code text-white">
+                            <pre><code>{{ iframeScriptContent }}</code></pre>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div>
+                        <h3 class="py-2 ">Nuxt 3</h3>
                         <div class="mockup-code text-white">
                             <pre><code>{{ nuxt3ScriptContent }}</code></pre>
                         </div>
@@ -69,7 +76,7 @@
 <script lang="ts" setup>
 import axios from "axios";
 import { useI18n } from "vue-i18n";
-import { getAllRobot, } from "~~/assets/js/utils/commonService.js";
+import { getAllRobot } from "~~/assets/js/utils/commonService.js";
 import { jumpToPage } from "~~/assets/js/utils/tools";
 
 
@@ -79,18 +86,23 @@ const userStore = useUserStore();
 const robotStore = useRobotStore();
 const deployCodeModal = ref(false);
 
+const iframeScriptContent = `
+// v-loazy-load, data-src is used for "nuxt-lazy-load" library,
+// if you are not using this library, you can use "src" attribute instead
+
+<iframe src="https://answerfansai.com/robot-chat-room/${robotStore.selectedRobotId}" height="824" width="448"></iframe>
+`
+
 const nuxt3ScriptContent = `
 <script lang="ts" setup>
     onMounted(() => {
         const script = document.createElement('script')
-        script.src = "http://rxkme89g7.sabkt.gdipper.com/emberRobot.min.js"
+        script.src = "https://s.oralfairy.com/emberRobotV2.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2"
         script.id = '${robotStore.selectedRobotId}'
         document.body.appendChild(script)
     })
 <script>
 `;
-
-
 
 if (process.client) {
     userStore.initLocalUser()
@@ -98,6 +110,7 @@ if (process.client) {
 }
 
 const toggleDeployCodeModal = (visible: boolean, robotId: string = '') => {
+    console.log("🚀 ~ file: CreateRobotTab.vue:115 ~ toggleDeployCodeModal ~ robotId:", robotId)
     if (robotId) {
         robotStore.selectedRobotId = robotId;
     }

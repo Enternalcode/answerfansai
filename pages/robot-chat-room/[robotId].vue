@@ -18,13 +18,15 @@
                         <EmberChatbotTyping />
                     </EmberChatbotBubble>
                 </div>
-                <form @submit.prevent="sendMessage" class="flex items-center mt-auto px-4 space-x-2">
-                    <input v-model="messageText" type="text"
-                        class="w-full py-6 px-3 h-10 text-black border border-gray-900 placeholder:text-gray-600 outline-none focus:outline-none transition-all duration-150 ease-in-out focus:border-purple-600" />
-                    <button class="btn btn-md btn-primary rounded-none bg-purple-600" :disabled="typing">
-                        <Icon name="grommet-icons:send" size="24" color="white" />
-                    </button>
-                </form>
+                <div class="pb-2">
+                    <form @submit.prevent="sendMessage" class="flex items-center mt-auto px-4 space-x-2">
+                        <input v-model="messageText" type="text"
+                            class="w-full py-6 px-3 h-10 text-black border border-gray-900 placeholder:text-gray-600 outline-none focus:outline-none transition-all duration-150 ease-in-out focus:border-purple-600" />
+                        <button class="btn btn-md btn-primary rounded-none bg-purple-600" :disabled="typing">
+                            <Icon name="grommet-icons:send" size="24" color="white" />
+                        </button>
+                    </form>
+                </div>
                 <div class="flex justify-center items-center py-4">
                     <span>Powered By
                         <a class="link" href="http://answerfansai.com">AnswerFansAI.com</a>
@@ -64,7 +66,6 @@ function sendMessage() {
     messages.value = [...messages.value, { role: "user", content: messageText.value }]
     // { messages: messages.value }
     let data = {
-        "user_id": currentRobotInfo.userId,
         "robot_id": currentRobotInfo.robotId,
         "messages": [{ "role": "user", "content": messageText.value }],
         "max_tokens": maxTokens,
@@ -95,7 +96,6 @@ function sendMessage() {
 
 // onMounted(async () => {
 //     const robotInfo = await getRobotInfoByRobotId(currentRobotId)
-//     console.log("🚀 ~ file: [robotId].vue:97 ~ onMounted ~ robotInfo:", robotInfo)
 //     currentRobotInfo.avatarUrl = robotInfo.data[0].robot_avatar
 //     currentRobotInfo.name = robotInfo.data[0].robot_name
 //     currentRobotInfo.robotId = robotInfo.data[0].robot_id
@@ -103,9 +103,7 @@ function sendMessage() {
 // })
 
 onBeforeMount(async () => {
-    console.log("🚀 ~ file: [robotId].vue:107 ~ onBeforeMount ~ currentRobotId:", currentRobotId)
     const robotInfo = await getRobotInfoByRobotId(currentRobotId)
-    console.log("🚀 ~ file: [robotId].vue:97 ~ onMounted ~ robotInfo:", robotInfo)
     currentRobotInfo.avatarUrl = robotInfo.data[0].robot_avatar
     currentRobotInfo.name = robotInfo.data[0].robot_name
     currentRobotInfo.robotId = robotInfo.data[0].robot_id

@@ -17,3 +17,5 @@ export function formatTimestamp(timestamp) {
 export function getCurrentTimestamp() {
     return new Date().getTime();
 }
+
+

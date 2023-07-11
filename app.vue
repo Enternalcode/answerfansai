@@ -26,14 +26,26 @@
 </template>
 
 <script setup lang="ts">
-import { themeChange } from 'theme-change';
 import { useHead } from "unhead";
-import { onBeforeMount, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { ModalsContainer } from 'vue-final-modal';
-// const MyScript = defineAsyncComponent(() => import('@/static/scripts/emberRobot.js'))
+
+
+// onMounted(() => {
+//   themeChange(false)
+//   const robotId = "0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5"
+//   const buttonBottom = '10px'
+//   const buttonRight = '10px'
+//   localDeploy(robotId, buttonBottom, buttonRight)
+// })
 
 onMounted(() => {
-  themeChange(false)
+  const script = document.createElement('script')
+  script.src = `https://s.oralfairy.com/emberRobotV2.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2`
+  // script.src = `https://s.oralfairy.com/emberRobot.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2`
+  // script.src = `https://s.oralfairy.com/emberRobot7.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2`
+  script.id = '0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5'
+  document.body.appendChild(script)
 })
 
 

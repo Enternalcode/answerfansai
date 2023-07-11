@@ -21,4 +21,12 @@
     </div>
 </template>
 
+<script setup lang="ts">
+const { locale, locales, setLocale } = useI18n()
+const switchLocalePath = useSwitchLocalePath()
+
+const availableLocales = computed(() => {
+    return (locales.value).filter(i => i.code !== locale.value)
+})
+</script>
 

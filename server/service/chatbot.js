@@ -27,7 +27,6 @@ async function answerQuestion(body) {
     let path = '/v1/customer-service-robot/robot/answer-question'
     let url = baseURL + path
     let data = {
-        "user_id": body.user_id,
         "robot_id": body.robot_id,
         "request_timestamp_ms": getCurrentTimestamp(),
         "messages": body.messages,

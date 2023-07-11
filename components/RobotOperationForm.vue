@@ -24,7 +24,7 @@
                 <input v-model="robotInfoForm.desc" type="text" :placeholder="t('createRobotDescPlaceholder')"
                     class="w-full input input-bordered input-primary" />
             </div>
-            <div class="flex space-x-2">
+            <div class="flex flex-row justify-between space-x-2">
                 <button class="btn" @click="toggleCreateRobotForm(false)">{{ $t('discardChanges')
                 }}</button>
                 <button class="btn" @click="handlerClick()">
@@ -38,7 +38,6 @@
 import { defineProps, ref } from 'vue';
 import eventBus from "~~/assets/js/lib/eventBus";
 import { RobotItem } from "~~/types/robot";
-
 
 
 interface RobotInfoForm {
