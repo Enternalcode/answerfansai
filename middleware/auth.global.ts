@@ -1,9 +1,11 @@
-import { useUserStore } from "../composables/stores"
+import { useUserStore } from "../composables/stores";
 export default defineNuxtRouteMiddleware((to, from) => {
-    if (to.name == 'robot-management') {
+    const localePath = useLocalePath();
+    console.log("🚀 ~ file: auth.global.ts:6 ~ defineNuxtRouteMiddleware ~ to.name:", to.name)
+    if (to.path.includes('robot-management')) {
         const userStore = useUserStore()
         if (userStore.isSignIn == false) {
-            return navigateTo('/sign-in')
+            return navigateTo(localePath('/sign-in'))
         }
     }
 })

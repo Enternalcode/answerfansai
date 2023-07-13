@@ -28,10 +28,10 @@
                             <div>
                                 {{ $t('noAccountHint') }}<span
                                     class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
-                                    @click="jumpToPage('/sign-up')">{{ $t('signUp') }}</span>
+                                    @click="navigateTo(localePath('/sign-up'))">{{ $t('signUp') }}</span>
                             </div>
-                            <div class="text-sm text-right cursor-pointer transition-light hover:text-black"
-                                @click="jumpToPage('/forget')">{{ $t('forgetPassword') }}
+                            <div class="text-sm text-right cursor-pointer transition-light"
+                                @click="navigateTo(localePath('/forget'))">{{ $t('forgetPassword') }}
                             </div>
                         </div>
                     </div>
@@ -45,11 +45,12 @@
 <script setup lang="ts">
 import axios from "axios";
 import { useI18n } from "vue-i18n";
-import { isEmail, jumpToPage, setCookie } from "~/assets/js/utils/tools";
+import { isEmail, setCookie } from "~/assets/js/utils/tools";
 
 const { t } = useI18n();
-const submitForm = reactive({ email: "", password: "" })
-const userStore = useUserStore()
+const submitForm = reactive({ email: "", password: "" });
+const userStore = useUserStore();
+const localePath = useLocalePath();
 
 const signinUser = () => {
     if (submitForm.email == '' || submitForm.password == '') {
@@ -80,7 +81,7 @@ const signinUser = () => {
                 setCookie("__user", encodeURIComponent(JSON.stringify(res)), 365)
                 setTimeout(() => {
                     userStore.initLocalUser()
-                    jumpToPage("/robot-management")
+                    navigateTo(localePath('/robot-management'))
                 }, 2000)
             }
         }

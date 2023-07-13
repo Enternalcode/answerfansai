@@ -30,6 +30,7 @@ import { useHead } from "unhead";
 import { onMounted } from 'vue';
 import { ModalsContainer } from 'vue-final-modal';
 
+const { setLocale } = useI18n()
 
 // onMounted(() => {
 //   themeChange(false)
@@ -49,6 +50,7 @@ onMounted(() => {
 })
 
 
+
 useHead({
   title: 'AnserFansAI',
   meta: [
@@ -58,7 +60,5 @@ useHead({
     { rel: 'icon', href: '/logo-initial.png' },
   ]
 })
-
-
 
 </script>

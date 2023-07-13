@@ -29,7 +29,7 @@
                 </div>
                 <div class="flex justify-center items-center py-4">
                     <span>Powered By
-                        <a class="link" href="http://answerfansai.com">AnswerFansAI.com</a>
+                        <NuxtLink class="link" to="http://answerfansai.com">AnswerFansAI.com</NuxtLink>
                     </span>
                 </div>
             </div>

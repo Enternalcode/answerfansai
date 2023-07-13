@@ -20,13 +20,13 @@
                                 <RobotOperationForm action="update" :saveButtonHandler="updateRobot" :robotData="item" />
                                 <div class="card-actions">
                                     <button class="btn btn-circle"
-                                        @click="jumpToPage(`/robot-load-data/${item.id}`, { robotId: item.id })">
+                                        @click="navigateTo({ path: localePath(`/robot-load-data/${item.id}`), query: { robotId: item.id } })">
                                         <Icon name="grommet-icons:document-store" />
                                     </button>
                                 </div>
                                 <div class="card-actions">
                                     <button class="btn btn-circle"
-                                        @click="jumpToPage(`/robot-chat-room/${item.id}`, { robotId: item.id })">
+                                        @click="navigateTo({ path: localePath(`/robot-chat-room/${item.id}`), query: { robotId: item.id } })">
                                         <Icon name="heroicons-outline:chat-bubble-left-right" />
                                     </button>
                                 </div>
@@ -77,10 +77,10 @@
 import axios from "axios";
 import { useI18n } from "vue-i18n";
 import { getAllRobot } from "~~/assets/js/utils/commonService.js";
-import { jumpToPage } from "~~/assets/js/utils/tools";
 
 
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 const userStore = useUserStore();
 const robotStore = useRobotStore();

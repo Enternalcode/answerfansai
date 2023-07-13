@@ -111,18 +111,6 @@ const toggleCreateRobotForm = (value: boolean) => {
     }
 }
 
-// const onUploadChange: UploadProps['beforeUpload'] = async (rawFile) => {
-//     if (rawFile.type !== 'image/jpeg' && rawFile.type !== 'image/png') {
-//         ElMessage.error(t('imageAcceptTypeAlert'))
-//         return false
-//     } else if (rawFile.size / 1024 / 1024 > maxImageSizeMB) {
-//         ElMessage.error(t('imageMaxSizeAlert', { size: maxImageSizeMB }))
-//         return false
-//     }
-//     let res = await axios.get('/api/upload/sign')
-//     imageUploadContent.value.token = res.data.token
-// }
-
 
 const onUploadAvatarKey = (data: any) => {
     robotInfoForm.avatarKey = data.avatarKey

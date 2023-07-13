@@ -34,40 +34,11 @@
                         </div>
                         <div class="my-4 text-gray-600 text-base text-left">
                             {{ $t('haveAccountHint') }}<span
-                                class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
-                                @click="jumpToPage('/sign-in')">
-                                <route-link to="/sign-in">{{ $t('signIn') }}</route-link>
+                                class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold">
+                                <NuxtLink :to="localePath('/sign-in')">{{ $t('signIn') }}</NuxtLink>
                             </span>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="px-4">
-            <div class="max-w-lg m-auto">
-                <div class="text-2xl my-10">注册账号</div>
-                <!-- <el-form ref="formRef" :model="submitForm" :rules="rules" status-icon class="w-full">
-                    <el-form-item prop="email" class="w-full">
-                        <el-input placeholder="邮箱" v-model="submitForm.email" style="height:44px;" />
-                    </el-form-item>
-                    <el-form-item prop="password" class="w-full">
-                        <el-input placeholder="请输入至少6位密码" v-model="submitForm.password" type="password"
-                            style="height:44px;" />
-                    </el-form-item>
-                    <el-form-item prop="confirmPassword" class="w-full">
-                        <el-input placeholder="确认密码" v-model="submitForm.confirmPassword" type="password"
-                            style="height:44px;" />
-                    </el-form-item>
-                    <div class="dialog-footer flex justify-center mt-4">
-                        <el-button @click="signupUser" type="primary" class="w-full text-2xl"
-                            style="height:44px;font-size: 16px;transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);">注册</el-button>
-                    </div>
-                </el-form> -->
-                <div class="my-4 text-gray-600 text-base text-left">
-                    如果已有账号，可以直接<span class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
-                        @click="jumpToPage('/sign-in')">
-                        <route-link to="/sign-in">登录</route-link>
-                    </span>
                 </div>
             </div>
         </div>
@@ -75,11 +46,11 @@
 </template>
 <script setup lang="ts">
 import axios from 'axios';
-import { jumpToPage, setCookie } from "~/assets/js/utils/tools";
+import { setCookie } from "~/assets/js/utils/tools";
 const { t } = useI18n();
+const localePath = useLocalePath();
 
 const submitForm = reactive({ email: "", password: "", confirmPassword: "" })
-
 
 const signUpUser = () => {
     if (submitForm.email.trim() == '' || submitForm.password.trim() == '' || submitForm.password.trim() == '') {
@@ -102,13 +73,12 @@ const signUpUser = () => {
                 setCookie("__user", encodeURIComponent(JSON.stringify(res)), 365)
                 useNuxtApp().$toast.success(t('success'));
                 setTimeout(() => {
-                    window.location.href = "/robot-management"
+                    navigateTo(localePath('/robot-management'))
                 }, 2000)
             }
         }
     }).catch((err) => {
         useNuxtApp().$toast.error(err);
-
     })
 }
 

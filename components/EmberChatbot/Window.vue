@@ -86,10 +86,5 @@ function sendMessage() {
     })
 }
 
-// function replaceLinkWithAnchorTags(text) {
-//     let regex = /https?:\/\/[^\s]+/g;
-//     return text.replace(regex, (match) => '<a href="' + match.replace(/\.$/, "") + '" class="underline" target="_blank">link here</a>');
-// }
-
 
 </script>

@@ -10,7 +10,7 @@
                         {{ $t("mainDes") }}
                     </p>
                 </div>
-                <button class="btn my-4" @click="jumpToPage('/robot-management')">
+                <button class="btn my-4" @click="navigateTo(localePath('/robot-management'))">
                     {{ $t('freeTrial') }}
                 </button>
             </div>
@@ -39,18 +39,18 @@
     <div class="w-full max-w-screen-xl m-auto px-4 lg:px-10 py-20 flex items-center flex-wrap flex-col-reverse lg:flex-row">
         <div class="w-full lg:w-1/2 px-4 lg:px-20">
             <img src="/svg/fast.svg" class="max-w-sm m-auto">
-        </div>
+        </div>ssss
         <div class="w-full lg:w-1/2 lg:pl-10 text-center lg:text-left mb-6 lg:mb-0">
             <h2 class="text-4xl">{{ $t('experienceItNow') }}</h2>
             <div class="mt-8 text-gray-600">{{ $t('repliesMoreHeartfelt') }}</div>
-            <button class="btn my-4" @click="jumpToPage('/sign-up')">{{ $t('registerNow') }}</button>
+            <button class="btn my-4" @click="navigateTo(localePath('/sign-up'))">{{ $t('registerNow') }}</button>
         </div>
     </div>
     <Footer></Footer>
 </template>
 
-
 <script setup lang="ts">
-import { jumpToPage } from "~/assets/js/utils/tools";
+const localePath = useLocalePath();
+
 
 </script>

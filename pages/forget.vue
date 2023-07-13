@@ -25,7 +25,7 @@
                 <div class="my-4 text-gray-600 text-base text-center flex justify-between items-center">
                     <div>
                         {{ $t('back') }}<span class="underline text-cus-primary text-base cursor-pointer ml-1 font-bold"
-                            @click="jumpToPage('/sign-in')">{{ $t('SignIn') }}</span>
+                            @click="navigateTo(localePath('/sign-in'))">{{ $t('SignIn') }}</span>
                     </div>
                 </div>
             </div>
@@ -35,9 +35,9 @@
 
 <script setup lang="ts">
 import axios from 'axios';
-import { jumpToPage } from "~/assets/js/utils/tools";
 
 const { t } = useI18n();
+const localePath = useLocalePath();
 const submitForm = reactive({ email: "" })
 
 

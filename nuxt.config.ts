@@ -38,25 +38,30 @@ export default defineNuxtConfig({
         }
       }
     }],
-    ['@nuxtjs/i18n',
-      {
-        locales: [
-          {
-            code: 'en',
-            file: 'en-US.js',
-            name: 'English',
-          },
-          {
-            code: 'zh',
-            file: 'zh-CN.js',
-            name: '中文',
-          },
-        ],
-        langDir: 'lang',
-        defaultLocale: 'zh'
-      }
-    ]
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+    vueI18n: './i18n.config.ts',
+    locales: [
+      {
+        code: 'en-US',
+        iso: 'en-US',
+        file: 'en-US.js',
+        name: 'English',
+      },
+      {
+        code: 'zh-CN',
+        iso: 'zh-CN',
+        file: 'zh-CN.js',
+        name: '中文',
+      },
+    ],
+    lazy: true,
+    langDir: 'lang',
+    strategy: 'prefix_except_default',
+    // defaultLocale: "zh",
+
+  },
   build: {
     transpile: [],
   },

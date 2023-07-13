@@ -5,16 +5,21 @@
             © 2023 answerfansai.com
         </div>
         <div class="flex flex-wrap lg:space-x-10 text-sm">
-            <a href="/terms" class="w-full lg:w-auto text-center my-4 lg:my-0">{{ $t('termsOfService') }}</a>
-            <a href="/privacy" class="w-full lg:w-auto text-center my-4 lg:my-0">{{ $t('privacyPolicy') }}</a>
-            <a href="/contact" class="w-full lg:w-auto text-center my-4 mb-8 lg:my-0">{{ $t(('contactUs')) }}</a>
+            <NuxtLink :to="localePath('/terms')" class="w-full lg:w-auto text-center my-4 lg:my-0">{{ $t('termsOfService')
+            }}</NuxtLink>
+            <NuxtLink :to="localePath('/privacy')" class="w-full lg:w-auto text-center my-4 lg:my-0">{{ $t('privacyPolicy')
+            }}</NuxtLink>
+            <NuxtLink :to="localePath('/contact')" class="w-full lg:w-auto text-center my-4 mb-8 lg:my-0">{{
+                $t(('contactUs')) }}</NuxtLink>
         </div>
         <div class="pr-10">
             <form>
                 <label for="locale-select">{{ $t('language') }}: </label>
-                <select id="locale-select select select-info w-full max-w-xs" v-model="$i18n.locale">
-                    <option value="en">English</option>
-                    <option value="zh">中文</option>
+                <select v-model="language">
+                    <option v-for="item in locales" :key="typeof item === 'object' ? item.code : item"
+                        :value="typeof item === 'object' ? item.code : item">
+                        {{ typeof item === 'object' ? item.name : item }}
+                    </option>
                 </select>
             </form>
         </div>
@@ -22,11 +27,17 @@
 </template>
 
 <script setup lang="ts">
-const { locale, locales, setLocale } = useI18n()
-const switchLocalePath = useSwitchLocalePath()
 
-const availableLocales = computed(() => {
-    return (locales.value).filter(i => i.code !== locale.value)
+const { locale, locales, setLocale } = useI18n()
+const localePath = useLocalePath()
+
+const language = computed({
+    get: () => locale.value,
+    set: (value) => {
+        setLocale(value);
+    }
 })
+
+
 </script>
 

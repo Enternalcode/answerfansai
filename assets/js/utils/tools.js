@@ -6,9 +6,6 @@ export function isEmail(str) {
     return reg.test(str);
 }
 
-export function jumpToPage(page, query = {}) {
-    return navigateTo(page, query = query);
-}
 
 export function uuid(len) {
     return Number(Math.random().toString().substr(3, 8) + Date.now()).toString(len ? len : 36)

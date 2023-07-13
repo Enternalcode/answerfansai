@@ -6,10 +6,10 @@
                 <div class="w-full">
                     <span class="text-5xl">{{ $t('inputCorpus') }}</span>
                     <div class="mt-6 tabs tabs-boxed">
-                        <a v-for="(tab, index) in moduleTabs" :key="index" class="tab"
+                        <NuxtLink v-for="(tab, index) in moduleTabs" :key="index" class="tab"
                             :class="{ 'tab-active': activeTabIndex === index }" @click="activeTabIndex = index">
                             {{ tab }}
-                        </a>
+                        </NuxtLink>
                     </div>
                     <div class="mt-10">
                         <div v-if="activeTabIndex === 0">
