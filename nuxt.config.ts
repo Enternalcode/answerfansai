@@ -58,8 +58,7 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: 'lang',
     strategy: 'prefix_except_default',
-    // defaultLocale: "zh",
-
+    defaultLocale: "zh-CN",
   },
   build: {
     transpile: [],
