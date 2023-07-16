@@ -49,7 +49,7 @@
                 <!-- </div> -->
                 <div class="flex flex-col justify-center space-y-2">
                     <div class="text-center">
-                        <span>只需要几行代码即可快速集成你到网站</span>
+                        <span>{{ $t('sampleCodeTitle') }}</span>
                     </div>
                     <div class="divider"></div>
                     <div>
@@ -96,14 +96,12 @@ if (process.client) {
 }
 
 const toggleDeployCodeModal = (visible: boolean, robotId: string = '') => {
-    console.log("🚀 ~ file: CreateRobotTab.vue:114 ~ toggleDeployCodeModal ~ visible:", visible)
-    console.log("🚀 ~ file: CreateRobotTab.vue:115 ~ toggleDeployCodeModal ~ robotId:", robotId)
     deployCodeModal.value = visible;
     nuxt3ScriptContent.value = `
     <script lang="ts" setup>
         onMounted(() => {
             const script = document.createElement('script')
-            script.src = "https://s.oralfairy.com/emberRobotV2.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2"
+            script.src = "https://s.oralfairy.com/emberRobotV3.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2&lang=en-US"
             script.id = '${robotId}'
             document.body.appendChild(script)
         })
@@ -112,7 +110,7 @@ const toggleDeployCodeModal = (visible: boolean, robotId: string = '') => {
     // v-loazy-load, data-src is used for "nuxt-lazy-load" library,
     // if you are not using this library, you can use "src" attribute instead
 
-    <iframe src="https://answerfansai.com/robot-chat-room/${robotId}" height="824" width="448"></iframe>
+    <iframe src="https://answerfansai.com/en-US/robot-chat-room/${robotId}" height="824" width="448"></iframe>
     `
 }
 

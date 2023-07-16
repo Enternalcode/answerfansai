@@ -1,7 +1,8 @@
 export default {
     smartReplyBot: "智能回复机器人",
     mainDesTitle: "自定义你的客服机器人",
-    mainDes: "手动输入或者上传文本，或者添加一个链接到你的网站，即可生成一个专属的客服机器人。随后嵌入到您的网站，即可开放给客户使用。",
+    // mainDes: "手动输入或者上传文本，或者添加一个链接到你的网站，即可生成一个专属的客服机器人。随后嵌入到您的网站，即可开放给客户使用。",
+    mainDesc: "手动输入文本，即可生成一个专属的客服机器人。随后嵌入到您的网站，即可开放给客户使用。",
     freeTrial: "免费使用",
     stepDesTitle: "只需四步，获得你的专属客服机器人",
     registerAccount: "注册账号",
@@ -67,4 +68,7 @@ export default {
     price: "价格",
     language: "语言",
     setting: "设置",
+    robotPresentWelcomeStatement0: "我是智能机器人",
+    robotPresentWelcomeStatement1: "请问有什么能帮到您？",
+    sampleCodeTitle: "只需要几行代码即可快速集成你到网站",
 }

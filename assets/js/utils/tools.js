@@ -87,4 +87,6 @@ export async function synchronizationUserState(flag) {
 export async function clearLocal() {
     setCookie("__user", "")
     removeLocalEncrpt('__r')
+    const userStore = useUserStore()
+    userStore.clear()
 }

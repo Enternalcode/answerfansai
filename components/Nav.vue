@@ -12,7 +12,7 @@
                     <div class="dropdown dropdown-end">
                         <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
                             <li>
-                                <NuxtLink @click="logout">{{ $t('logOut') }} </NuxtLink>
+                                <NuxtLink @click="logOut">{{ $t('logOut') }} </NuxtLink>
                             </li>
                         </ul>
                     </div>
@@ -36,7 +36,7 @@
                         </label>
                         <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
                             <li>
-                                <NuxtLink @click="logout">{{ $t('logOut') }} </NuxtLink>
+                                <NuxtLink @click="logOut">{{ $t('logOut') }} </NuxtLink>
                             </li>
                         </ul>
                     </div>
@@ -69,9 +69,10 @@ const filterName = (email: string) => {
     return email.length > 8 ? email.substring(0, 8) + "..." : email
 }
 
-const logout = () => {
+const logOut = () => {
     clearLocal()
     window.location.reload()
+    userStore.logOut()
 }
 
 </script>

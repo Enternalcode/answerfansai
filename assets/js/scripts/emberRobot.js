@@ -54,18 +54,47 @@ function createChatWindow(config) {
     }
   });
 
+  let notShowButton = document.querySelector('#afa-button-not-show');
+  if (notShowButton) {
+    console.log('not show button')
+    btn.style.display = 'none';
+  } else {
+    console.log('show button')
+    btn.style.display = 'block';
+  }
+
   // 将 iframe 添加到页面中
   document.body.appendChild(iframe);
 }
 
-function run() {
-  const robotId = document.currentScript.getAttribute('id');
-  const params = new URLSearchParams(document.currentScript.getAttribute('src'));
-  const buttonBottom = params.get('buttonBottom');
-  const buttonRight = params.get('buttonRight');
-  const buttonBackgroundColor = params.get('buttonBackgroundColor');
-  const buttonIcon = params.get('buttonIcon');
-  const chatUrl = `https://answerfansai.com/robot-chat-room/${robotId}`;
+export default function run(debug = false) {
+  let robotId = ''
+  let buttonBottom = '4px';
+  let buttonRight = '10px';
+  let buttonBackgroundColor = '#8a2be2';
+  let lang = 'en-US'
+  let buttonIcon = '';
+  let chatUrl = `https://answerfansai.com/${lang}/robot-chat-room/${robotId}`;
+
+  if (debug) {
+    robotId = '0c925a58-c2e2-4c99-a9a2-f32bd6a9e6f5'
+    buttonBottom = '4px';
+    buttonRight = '10px';
+    buttonBackgroundColor = '#8a2be2';
+    lang = 'en-US'
+    buttonIcon = '';
+    chatUrl = `http://localhost:3000/${lang}/robot-chat-room/${robotId}`;
+  } else {
+    robotId = document.currentScript.getAttribute('id');
+    const params = new URLSearchParams(document.currentScript.getAttribute('src'));
+    buttonBottom = params.get('buttonBottom');
+    buttonRight = params.get('buttonRight');
+    buttonBackgroundColor = params.get('buttonBackgroundColor');
+    buttonIcon = params.get('buttonIcon');
+    lang = params.get('lang');
+    chatUrl = `https://answerfansai.com/${lang}/robot-chat-room/${robotId}`;
+  }
+
   createChatWindow({
     chatUrl: chatUrl,
     buttonBottom: buttonBottom,
@@ -76,7 +105,7 @@ function run() {
   });
 }
 
-run();
+// run();
 
 
 

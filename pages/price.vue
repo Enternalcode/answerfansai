@@ -12,7 +12,7 @@ import { ref } from 'vue';
 
 const title = 'Buy Me a Coffee!';
 const description = 'Thank you for considering sponsoring me. Your support means a lot and helps me continue to create useful content!';
-const qrCodeValue = ref('qrcode/IMG_5410.JPG');
+const qrCodeValue = ref('/qrcode/IMG_5410.JPG');
 const size = ref(256);
 const fgColor = ref('#000000');
 const bgColor = ref('#ffffff');

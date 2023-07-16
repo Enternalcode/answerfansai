@@ -3,8 +3,6 @@ import { getCookie } from "~/assets/js/utils/tools";
 import { getPrivateDownloadUrl } from '~~/assets/js/utils/commonService';
 import { ResRobotItem, RobotItem } from '~~/types/robot';
 
-
-
 export const useMemberStore = defineStore('member', {
     state: () => ({
         verify: false,
@@ -26,6 +24,7 @@ export const useMemberStore = defineStore('member', {
 export const useUserStore = defineStore('user', {
     state: () => ({
         user: { "email": "", "token": "", "userId": "" },
+        isLogIn: ref(false),
     }),
     getters: {
         getUser: (state) => {
@@ -36,8 +35,13 @@ export const useUserStore = defineStore('user', {
         }
     },
     actions: {
+        logOut() {
+            this.user = { "email": "", "token": "", "userId": "" };
+            this.isLogIn = false;   
+        },
         setUser(data: any) {
             this.user = data;
+            this.isLogIn = true;
         },
         initLocalUser() {
             const res = getCookie("__user")

@@ -7,7 +7,7 @@
                 <div class="text-center lg:text-left mt-8 text-gray-600 leading-loose">
                     <p class="font-bold mb-4">{{ $t('mainDesTitle') }}</p>
                     <p class="whitespace-pre-wrap overflow-wrap-break-word">
-                        {{ $t("mainDes") }}
+                        {{ $t("mainDesc") }}
                     </p>
                 </div>
                 <button class="btn my-4" @click="navigateTo(localePath('/robot-management'))">
@@ -39,7 +39,7 @@
     <div class="w-full max-w-screen-xl m-auto px-4 lg:px-10 py-20 flex items-center flex-wrap flex-col-reverse lg:flex-row">
         <div class="w-full lg:w-1/2 px-4 lg:px-20">
             <img src="/svg/fast.svg" class="max-w-sm m-auto">
-        </div>ssss
+        </div>
         <div class="w-full lg:w-1/2 lg:pl-10 text-center lg:text-left mb-6 lg:mb-0">
             <h2 class="text-4xl">{{ $t('experienceItNow') }}</h2>
             <div class="mt-8 text-gray-600">{{ $t('repliesMoreHeartfelt') }}</div>

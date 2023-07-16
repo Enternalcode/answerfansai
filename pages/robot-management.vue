@@ -13,7 +13,7 @@
                     </div>
                     <div class="mt-10">
                         <div v-if="activeTabIndex === 0">
-                            <CreateRobotTab />
+                            <RobotTab />
                         </div>
                         <div v-if="activeTabIndex === 1">
                         </div>
@@ -28,7 +28,7 @@ import { useI18n } from "vue-i18n";
 import { getAllRobot } from "~~/assets/js/utils/commonService.js";
 
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
 
 const userStore = useUserStore();
 const robotStore = useRobotStore();

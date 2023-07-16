@@ -1,7 +1,8 @@
 export default {
     smartReplyBot: "Smart Reply Bot",
     mainDesTitle: "Customize your customer service robot",
-    mainDes: "Manually input or upload text, or add a link to your website, to generate a custom customer service chatbot. Then embed it on your website to make it available for customers to use.",
+    // mainDes: "Manually input or upload text, or add a link to your website, to generate a custom customer service chatbot. Then embed it on your website to make it available for customers to use.",
+    mainDesc: "Manually input text, to generate a custom customer service chatbot. Then embed it on your website to make it available for customers to use.",
     freeTrial: "Free trial",
     stepDesTitle: "Get your exclusive customer service chatbot in just four steps",
     registerAccount: "Register an account",
@@ -68,4 +69,7 @@ export default {
     price: "Price",
     language: "Language",
     setting: "Setting",
+    robotPresentWelcomeStatement0: "I am an intelligent robot",
+    robotPresentWelcomeStatement1: "How may I assist you?",
+    sampleCodeTitle: "Just a few lines of code and you can quickly integrate it into your website",
 }
