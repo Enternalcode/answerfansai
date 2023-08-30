@@ -7,6 +7,7 @@ export default {
     stepDesTitle: "只需四步，获得你的专属客服机器人",
     registerAccount: "注册账号",
     createRobot: "创建机器人",
+    scopedKnowledge: "语料",
     inputCorpus: "输入语料",
     integrationTo: "嵌入到你的网站",
     experienceItNow: "马上体验，快人一步",
