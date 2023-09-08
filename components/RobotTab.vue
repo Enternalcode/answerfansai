@@ -101,7 +101,7 @@ const toggleDeployCodeModal = (visible: boolean, robotId: string = '') => {
     <script lang="ts" setup>
         onMounted(() => {
             const script = document.createElement('script')
-            script.src = "https://s.oralfairy.com/emberRobotV3.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2&lang=en-US"
+            script.src = "https://s.oralfairy.com/emberRobotV4.min.js?&buttonBottom=10px&buttonRight=10px&buttonBackgroundColor=#8a2be2&lang=en-US"
             script.id = '${robotId}'
             document.body.appendChild(script)
         })

@@ -83,7 +83,7 @@ export default function run(debug = false) {
     buttonBackgroundColor = '#8a2be2';
     lang = 'en-US'
     buttonIcon = '';
-    chatUrl = `http://localhost:3000/${lang}/robot-chat-room/${robotId}`;
+    chatUrl = `http://answerfansai.com/${lang}/robot-chat-room/${robotId}`;
   } else {
     robotId = document.currentScript.getAttribute('id');
     const params = new URLSearchParams(document.currentScript.getAttribute('src'));
